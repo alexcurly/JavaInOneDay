@@ -1,15 +1,10 @@
 package javaproject;
 
 import java.io.*;
-import java.util.LinkedList;
+import java.util.*;
+
 
 public class FileHandler {
-
-//    public String createCSV(String fileName){
-//        FileCreator a = new FileCreator();
-//        a.create("myFile.txt");
-//        return "file was created";
-//    }
 
     String line;
     public LinkedList<Member> readFile() {
@@ -38,16 +33,42 @@ public class FileHandler {
                 m.add(mem);
                 lineRead = reader.readLine();
             }
-
-
-
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
+        catch(IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return m;
+    }
 
-        return null;
+    public void appendFile(String mem){
+        try(BufferedWriter write = new BufferedWriter(new FileWriter("members.csv", true))) {
+            write.write(mem + "\n");
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void overwriteFile(LinkedList<Member> m) {
+        String s;
+
+        try(BufferedWriter write = new BufferedWriter(new FileWriter("member.temp", false))) {
+            for (int i=0; i< m.size(); i++)
+            {
+                s = m.get(i).toString();
+                write.write(s + "\n");
+            }
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        try{
+            File f = new File("members.csv");
+            File tf = new File("members.temp");
+
+            f.delete();
+            tf.renameTo(f);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
