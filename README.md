@@ -1,6 +1,6 @@
 # Test PetProject 
 
-### [1. MultiClubMember](src/main/java/javaproject/MultiClubMember.java)
+### [1. MultiClubMember ~ in work](src/main/java/javaproject/MultiClubMember.java)
 ### [2. Calculator](src/main/java/javaproject/Calculator.java)
 ### [3. FileCreator](src/main/java/javaproject/FileCreator.java)
 ### [4. FileHandler](src/main/java/javaproject/FileHandler.java)
